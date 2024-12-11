@@ -107,7 +107,7 @@ def draw_temp_new(save_path, depth, obs, sim, pred, dates, ice_flag, model_type)
 
     ax.set_ylabel('Water temperature ($°C$)', fontsize = FONT_LABEL)
     ax.xaxis.set_major_formatter(mdates.DateFormatter('%b %Y'))
-    # 设置刻度标签的字体
+
     ax.tick_params(axis='x', labelsize=FONT_LABEL)
     ax.tick_params(axis='y', labelsize=FONT_LABEL)
 
@@ -132,10 +132,9 @@ def draw_do(save_path, obs, pred, sim, date, is_stratified, pic_model_name):
     Returns:
     None: This function does not return a value. It saves the generated image to the specified path.
     """
-    # 设置图表大小和分辨率
+
     plt.figure(figsize=(12, 4))
 
-    # 绘制epi层数据
 
     # Updated color palette for clear distinction
     c_pred = '#1f77b4'  # Blue for NGCE predictions
@@ -154,7 +153,6 @@ def draw_do(save_path, obs, pred, sim, date, is_stratified, pic_model_name):
     LINEWIDTH = 0.9 # More elegant line width
     LINEWIDTH2 = 0.9
     LINEWIDTH_LASER = 6.5
-    # 绘制预测数据 
     pred[1, :] = np.where(is_stratified == 0, pred[0, :], pred[1, :])
     pred_epi = np.where(is_stratified != 0, pred[0,:], pred[0,:])
     pred_hypo = np.where(is_stratified != 0, pred[1,:], np.nan)
@@ -180,16 +178,16 @@ def draw_do(save_path, obs, pred, sim, date, is_stratified, pic_model_name):
     plt.fill_between(date, pred_epi, pred_hypo, color=c_fill_pred, alpha=0.4)
 
 
-    # 绘制模拟数据 - epi
+    # epi
     sim_data_epi = np.where(is_stratified != 0, sim[0, :], np.nan)
     sim_data_hypo = np.where(is_stratified != 0, sim[1, :], np.nan)
     sim_data_mixed = np.where(is_stratified == 0, sim[0, :], np.nan)
 
 
     plt.plot(date, sim_data_epi, label='Process (epi)', color=c_label, alpha=0.8, linewidth=LINEWIDTH)
-    # 绘制模拟数据 - hypo
+    # hypo
     plt.plot(date, sim_data_hypo, label='Process (hyp)', linestyle='--', color=c_label, alpha=0.8, linewidth=LINEWIDTH)
-    # 绘制模拟数据 - mixed
+    # mixed
     line_mixed_sim, = plt.plot(date, sim_data_mixed, label='Process (total)', color=c_label, alpha=0.8, linewidth=LINEWIDTH2)
     plt.plot(date, sim_data_mixed, color=c_label, alpha=0.3, linewidth=LINEWIDTH_LASER)
 
@@ -197,7 +195,7 @@ def draw_do(save_path, obs, pred, sim, date, is_stratified, pic_model_name):
     plt.fill_between(date, sim_data_epi, sim_data_hypo, color=c_fill_label, alpha=0.3)
 
 
-    # 绘制观测数据 - epi
+    # epi
     obs_data_epi = np.where(is_stratified != 0, obs[0, :], np.nan)
     obs_data_hypo = np.where(is_stratified != 0, obs[1, :], np.nan)
     obs_data_mixed = np.where(is_stratified == 0, obs[0, :], np.nan)
@@ -206,12 +204,12 @@ def draw_do(save_path, obs, pred, sim, date, is_stratified, pic_model_name):
         plt.scatter(date, obs_data_epi, marker='o', s=size, color=c_obs_epi, alpha=alpha, edgecolors='none')
     plt.scatter(date, obs_data_epi, marker='o', s=100, color=c_obs_epi, label='Obs DO conc. (epi)', alpha=0.8)
 
-    # 绘制观测数据 - hypo
+    # hypo
     for size, alpha in zip(range(300, 1200, 300), np.linspace(0.05, 0.15, 4)): 
         plt.scatter(date, obs_data_hypo, marker='o', s=size, color=c_obs_hyp, alpha=alpha, edgecolors='none')
     plt.scatter(date, obs_data_hypo, marker='o', s=100, color=c_obs_hyp, label='Obs DO conc. (hyp)', alpha=0.8)
 
-        # 绘制观测数据 - mixed
+    # mixed
     # if len(obs_indices_mixed) > 0: 
     for size, alpha in zip(range(300, 1200, 300), np.linspace(0.05, 0.15, 4)):
         plt.scatter(date, obs_data_mixed, marker='o', s=size, color=c_obs_mixed, alpha=alpha, edgecolors='none')
@@ -220,7 +218,6 @@ def draw_do(save_path, obs, pred, sim, date, is_stratified, pic_model_name):
     plt.gca().xaxis.set_major_locator(mdates.MonthLocator(bymonth=None, interval=3))
     plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%b %Y'))
 
-    # 设置图表标题、坐标轴标签和图例
     plt.setp(plt.gca().xaxis.get_majorticklabels(), rotation=0, ha="right")
     plt.ylabel("DO concentration ($g \, m^{-3}$)", fontsize=FONT_SIZE1)
     plt.tick_params(axis='both', which='major', labelsize=FONT_SIZE2)
@@ -233,7 +230,6 @@ def draw_do(save_path, obs, pred, sim, date, is_stratified, pic_model_name):
     # plt.axvspan(dates_num[0], date_150, color='lightyellow', alpha=0.5)
     # plt.axvspan(date_290, dates_num[-1], color='lightyellow', alpha=0.5)
 
-    # 展示图表
     plt.tight_layout()
     plt.savefig(save_path)
     plt.close()
@@ -254,11 +250,11 @@ def draw_do_new(save_path, obs, pred, sim, date, is_stratified, pic_model_name):
     Returns:
     None: This function does not return a value. It saves the generated image to the specified path.
     """
-    # 设置图表大小和分辨率
+
     # plt.figure(figsize=(10, 3))
 
     plt.figure(figsize=(87.5, 26))
-    # 绘制epi层数据
+
     color_list = ['#1a6499', '#3b9ade', '#92c7ed', '#abc8d3', '#eb8334', '#d98f99','#d62728', '#8a231c']
     
     c_pred_epi = '#1a6499'  # Blue for NGCE predictions
@@ -287,18 +283,18 @@ def draw_do_new(save_path, obs, pred, sim, date, is_stratified, pic_model_name):
         pic_model_name = 'LSTM'
     elif pic_model_name == 'fm-pg':
         pic_model_name = 'PGFM'
-    # 绘制观测数据 - epi
+    # epi
     obs_data_epi = np.where(is_stratified != 0, obs[0, :], np.nan)
     obs_data_hypo = np.where(is_stratified != 0, obs[1, :], np.nan)
     obs_data_mixed = np.where(is_stratified == 0, obs[0, :], np.nan)
 
-    # 绘制观测数据 - mixed
+    # mixed
     # if len(obs_indices_mixed) > 0: 
     # for size, alpha in zip(range(300, 1200, 300), np.linspace(0.05, 0.15, 4)):
     #     plt.scatter(date, obs_data_mixed, marker='o', s=size, color=c_obs_mixed, alpha=alpha, edgecolors='none')
     # plt.scatter(date, obs_data_mixed, marker='o', s=100, color=c_obs_mixed, label='Obs (total)', alpha=0.8)
 
-    # 绘制模拟数据 - epi
+    # epi
     sim_data_epi = np.where(is_stratified != 0, sim[0, :], sim[0, :])
     sim_data_hypo = np.where(is_stratified != 0, sim[1, :], sim[0, :])
     sim_data_mixed = np.where(is_stratified == 0, sim[0, :], np.nan)
@@ -306,7 +302,6 @@ def draw_do_new(save_path, obs, pred, sim, date, is_stratified, pic_model_name):
     # Fill between Simulated DO concentrations
     # plt.fill_between(date, sim_data_epi, sim_data_hypo, color=c_fill_label, alpha=0.3)
 
-    # 绘制预测数据 
     pred[1, :] = np.where(is_stratified == 0, pred[0, :], pred[1, :])
     pred_epi = np.where(is_stratified != 0, pred[0,:], pred[0,:])
     pred_hypo = np.where(is_stratified != 0, pred[1,:], pred[0,:])
@@ -346,7 +341,6 @@ def draw_do_new(save_path, obs, pred, sim, date, is_stratified, pic_model_name):
     # plt.gca().xaxis.set_major_locator(mdates.MonthLocator(bymonth=None, interval=3))
     plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%b %Y'))
 
-    # 设置图表标题、坐标轴标签和图例
     plt.setp(plt.gca().xaxis.get_majorticklabels(), rotation=0, ha="right")
     plt.ylabel("DO concentration ($g \, m^{-3}$)", fontsize=FONT_SIZE1)
     plt.tick_params(axis='both', which='major', labelsize=FONT_SIZE2)
