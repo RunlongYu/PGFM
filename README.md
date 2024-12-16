@@ -43,7 +43,8 @@ python3 train.py --model_type fm-pg --strategy n+1 --seed 40 --pt_datetime 'fm-m
 | `--current_time` | `str`  | (Required)          | The start time for the current run.                 |                                                                       |
 
 
-create data for step 3
+create data for [step3](#3-fine-tuning-stage-for-predicting-dissolved-oxygen-do-concentrations)
+
 ```
 python3 create_data_for_do.py --stage2_datetime stage2_datetime
 ```
