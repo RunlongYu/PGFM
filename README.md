@@ -68,22 +68,41 @@ python3 train.py --model_type fm-pg+ --strategy n+1 --seed 40 --pt_datetime 'fm-
 
 
 
-## Project Organization
+## Directory Descriptions
+```text
+Project Directory/
+│
+├── config/                # Stores configuration files, such as hyperparameters, environment variables, and settings
+│
+├── data/                  # Stores datasets
+│
+├── draw/                  # Contains scripts for generating visualizations or plots
+│
+├── layer/                 # Includes implementations of various layers used in our models
+│
+├── model/                 # Contains the PGFM model and all other baseline architectures, along with related files
+│
+├── optimizer/             # Contains implementations of optimizers used in training
+│
+├── run/                   # Includes scripts for running the training of the foundation model
+│
+├── stage1_main/           # Holds the main scripts for training of the foundation model
+│
+├── stage1_trainer/        # Contains training scripts specific to the foundation model
+│
+├── stage2_scripts/        # Includes scripts specific to fine-tuning models for predicting water temperature
+│
+├── stage3_scripts/        # Includes scripts specific to fine-tuning models for predicting DO concentrations
+│
+├── utils/                 # Utility functions and helper scripts that are commonly used across different scripts
+│
+└── README.md              # Project documentation
+```
 
-- **`config/`:** Stores configuration files, such as hyperparameters, environment variables, and settings.
-- **`data/`:** Stores datasets
-- **`draw/`:** Contains scripts for generating visualizations or plots.
-- **`layer/`:** Includes implementations of various layers used in our models.
-- **`model/`:** Contains the PGFM model and all other baseline architectures, along with related files.
-- **`optimizer/`:** Contains implementations of optimizers used in training.
-- **`run/`:** Includes scripts for running the training of the foundation model.
+## Contact
 
-- **`stage1_main/`:** Holds the main scripts for training of the foundation model.
+Should you have any questions regarding our paper or codes, please don't hesitate to reach out via email at chq29@pitt.edu or ruy59@pitt.edu.
 
-- **`stage1_trainer/`:** Contains training scripts specific to the foundation model.
 
-- **`stage2_scripts/`:** Includes scripts specific to fine-tuning models for predicting water temperature.
-
-- **`stage3_scripts/`:** Includes scripts specific to fine-tuning models for predicting DO concentrations.
-
-- **`utils/`:** Utility functions and helper scripts that are commonly used across different scripts.
+## Acknowledgment 
+Our code is developed based on [GitHub - jdwillard19/MTL_lakes-Torch: Meta Transfer Learning for Lake Temperature Prediction](https://github.com/jdwillard19/MTL_lakes) and [GitHub - RunlongYu/CELS](https://github.com/RunlongYu/CELS).
