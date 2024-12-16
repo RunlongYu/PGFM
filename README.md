@@ -1,6 +1,6 @@
 
 # Physics-Guided Foundation Model for Scientific Discovery: An Application to Aquatic Science
-This repository is the official implementation of **Physics-Guided Foundation Model for Scientific Discovery: An Application to Aquatic Science**, which will be presented at **AAAI-25**
+This repository is the official implementation for the **AAAI-25** Paper titled, **Physics-Guided Foundation Model for Scientific Discovery: An Application to Aquatic Science**.
 
 
 ![''](img/PGFM-v5.png)
