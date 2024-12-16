@@ -7,7 +7,7 @@ This repository is the official implementation of **Physics-Guided Foundation Mo
 
 ## Usage
 
-### Example
+<!-- ### Example -->
 #### 1. Pre-training stage
 ```
 cd stage_main
@@ -43,8 +43,7 @@ python3 train.py --model_type fm-pg --strategy n+1 --seed 40 --pt_datetime 'fm-m
 | `--current_time` | `str`  | (Required)          | The start time for the current run.                 |                                                                       |
 
 
-
-create data for step 2
+create data for step 3
 ```
 python3 create_data_for_do.py --stage2_datetime stage2_datetime
 ```
